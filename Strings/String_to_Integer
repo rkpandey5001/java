@@ -1,0 +1,22 @@
+public class String_To_Integer
+{
+	public static int remove(String input) 
+	{
+		if(input.length()==1)
+		{
+			return (input.charAt(0)-'0');
+		}
+		double y=remove(input.substring(1));
+		double x=input.charAt(0)-'0';
+		x=x*Math.pow(10, input.length()-1)+y;
+		return (int)(x);
+	}
+	public static void main(String[] args) 
+	{
+		String input="000123";
+		int remove1=remove(input);
+	    System.out.print(remove1);
+
+	}
+
+}
