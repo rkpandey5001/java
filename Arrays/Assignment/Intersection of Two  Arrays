@@ -1,0 +1,27 @@
+import java.util.Scanner;
+public class Solution
+{    
+    public static void intersections(int arr1[], int arr2[]) 
+    {
+    	int size1=arr1.length;
+        int size2=arr2.length;
+        int i=0;
+        int a=0;
+        while(i<size1)
+        {
+            int j=0;
+            while(j<size2)
+            {
+              if(arr1[i]==arr2[j]) 
+              {
+               a=arr1[i];
+               System.out.print(a+" ");
+               arr2[j]=-1;
+               break;
+              }
+               j++;
+           }
+        i++;
+       }
+    }
+}
