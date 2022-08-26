@@ -1,0 +1,53 @@
+public class ComplexNumbers {
+private int imaginary;
+  private int real;
+
+    public ComplexNumbers(int real, int imaginary) 
+    {
+        this.imaginary = imaginary;
+        this.real = real;
+    }
+
+    public int getImaginary()
+    {
+        return imaginary;
+    }
+
+    public void setImaginary(int imaginary) 
+    {
+        this.imaginary = imaginary;
+    }
+
+    public int getReal() 
+    {
+        return real;
+    }
+
+    public void setReal(int real) 
+    {
+        this.real = real;
+    }
+
+    public void plus(ComplexNumbers c2) 
+    {
+        ComplexNumbers temp = new ComplexNumbers(0 , 0);
+        temp.real = real + c2.real;
+        temp.imaginary = imaginary + c2.imaginary;
+        setImaginary(temp.imaginary);
+        setReal(temp.real);
+    }
+    
+    public void multiply (ComplexNumbers c2)
+    {
+        ComplexNumbers temp = new ComplexNumbers(0 , 0);
+        temp.real = (real * c2.real ) - (imaginary) * (c2.imaginary);
+        temp.imaginary = (real * c2.imaginary) + (imaginary * c2.real);
+        setImaginary(temp.imaginary);
+        setReal(temp.real);
+    }
+    
+    public void print () 
+    {
+        System.out.println(real+" + i"+imaginary);
+    }
+}
