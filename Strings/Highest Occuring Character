@@ -1,0 +1,37 @@
+import java.util.Scanner;
+public class Solution 
+{
+	public static char highestOccuringChar(String str) 
+  {
+	   int size=str.length();
+     int i=0;
+     int arr[]=new int[124];
+     
+        while(i<size)
+        {
+            int j=97;
+            while(j<124)
+            {
+            arr[j]=(int)(str.charAt(i));
+            }
+            i++;
+        }
+        
+        int j=97;
+        while(j<size)
+        {
+            int l=j+1;
+            while(l<124)
+            {
+                if(j>l)
+                {
+                    l++;
+                }
+                char str=(char)(j);   
+            }
+            j++;
+        }
+        return str;
+	}
+
+}
