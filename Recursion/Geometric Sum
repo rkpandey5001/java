@@ -1,0 +1,14 @@
+import java.util.Scanner;
+import java.util.*;
+public class solution 
+{
+	public static double findGeometricSum(int k)
+  {
+		if(k==0)
+    {
+      return 1;
+    }
+   double ans=1/(double)Math.pow(2,k)+findGeometricSum(k-1);
+   return ans;
+	}
+}
