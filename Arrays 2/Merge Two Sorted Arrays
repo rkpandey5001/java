@@ -1,0 +1,43 @@
+import java.util.Scanner;
+public class Solution 
+{  
+    public static int[] merge(int arr1[], int arr2[]) 
+    {
+    	int index1=arr1.length;
+        int index2=arr2.length;
+        int size=index1+index2;
+        int arr3[]=new int[size];
+        int i=0;
+        int j=0;
+        int k=0;
+        while(i<index1&&j<index2)
+        {
+            if(arr1[i]<arr2[j])
+            {
+                arr3[k]=arr1[i];
+                i++;
+                k++;
+            }
+            else
+            {
+                arr3[k]=arr2[j];
+                j++;
+                k++;
+            }
+            
+        }
+        while(i<index1)
+        {
+            arr3[k]=arr1[i];
+            i++;
+            k++;
+        }
+        while(j<index2)
+        {
+            arr3[k]=arr2[j];
+            j++;
+            k++;
+        }
+        return arr3;
+    }
+}
