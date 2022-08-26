@@ -1,0 +1,30 @@
+import java.util.Scanner;
+public class Solution 
+{ 
+    public static int findTriplet(int[] arr, int x)
+    {
+    	int size=arr.length;
+        int i=0;
+        int count=0;
+        while(i<size)
+        {
+            int j=i+1;
+            while(j<size)
+            {   
+                int t=j+1;
+                while(t<size)
+                {
+                int value=arr[i]+arr[j]+arr[t];
+                if(value==x)
+                {
+                    count=count+1;
+                }
+                    t++;
+                }
+                j++;
+            }
+            i++;
+        }
+        return count;
+    }
+}
