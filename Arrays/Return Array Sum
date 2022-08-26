@@ -1,0 +1,16 @@
+import java.util.Scanner;
+public class Solution 
+{
+	public static int sum(int[] input) 
+  {
+		int i=0;
+        int size=input.length;
+        int arrsum=0;
+        while(i<size)
+        {
+            arrsum=arrsum+input[i];
+            i++;
+        }
+        return arrsum;
+	}
+}
