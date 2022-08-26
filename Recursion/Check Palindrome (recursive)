@@ -1,0 +1,39 @@
+import java.util.Scanner;
+public class solution 
+{
+	public static boolean isStringPalindrome(String input) 
+  {
+		return isStringPalindrome(input , 0 , input.length()-1);
+	}
+    
+    public static boolean isStringPalindrome(String input , int start , int end) 
+    {
+        boolean ans=false;
+        if(input==null)
+        {
+            return false;
+        }
+        
+        if(input.length()<=1)
+        {
+            return true;
+        }
+        
+        if(input.length()==0)
+	      {
+	            return false;
+	      }
+        
+        if(start>=end)
+        {
+            return true;
+        }
+        
+        if(input.charAt(start)==input.charAt(end))
+        {
+            ans=isStringPalindrome(input , start+1 , end-1); 
+        }
+        return ans;
+    }
+    
+}
