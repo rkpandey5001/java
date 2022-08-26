@@ -1,0 +1,23 @@
+import java.util.Scanner;
+public class Solution 
+{
+	public static int firstIndex(int input[], int x)
+  {
+     return firstIndex(input , x , 0);
+	}
+    
+      public static int firstIndex(int input[] , int x , int si)
+      {
+        if(si >= input.length)
+        {
+            return -1;
+        }
+        
+        if(input[si] == x)
+        {
+            return si;
+        }
+        
+        return firstIndex(input , x , si+1 );
+    }
+}
