@@ -1,0 +1,62 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> 
+  {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data)
+    {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+public class Solution 
+{
+	public static BinaryTreeNode<Integer> buildTree(int[] preOrder, int[] inOrder)
+  {
+		return buildtreeHelper(inOrder,preOrder,0,inOrder.length-1,0,preOrder.length-1);
+	}
+	public static BinaryTreeNode<Integer> buildtreeHelper(int[] inOrder, int[] preOrder,int instart,int inend,int prestart,int preend)
+	{
+		if(instart>inend)
+		{
+			return null;
+		}
+		
+		int rootdata=preOrder[prestart];
+		BinaryTreeNode<Integer> root=new BinaryTreeNode<Integer>(rootdata);
+		
+		int rootindex=-1;
+		for(int i=instart;i<=inend;i++)
+		{
+			if(inOrder[i]==rootdata)
+			{
+				rootindex=i;
+				break;
+			}
+		}
+		if(rootindex==-1)
+		{
+			return null;
+		}
+		  int leftinstart=instart;
+	    int leftinend=rootindex-1;
+	    int leftprestart=prestart+1;
+	    int leftpreend=leftinend-leftinstart+leftprestart;
+	    int rightinstart=rootindex+1;
+	    int rightinend=inend;
+	    int rightprestart=leftpreend+1;
+	    int rightpreend=preend;
+	    root.left=buildtreeHelper(inOrder,preOrder,leftinstart,leftinend,leftprestart,leftpreend);
+	    root.right=buildtreeHelper(inOrder,preOrder,rightinstart,rightinend,rightprestart,rightpreend);
+	    return root;
+	}
+}
