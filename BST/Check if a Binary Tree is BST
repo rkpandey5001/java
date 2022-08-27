@@ -1,0 +1,73 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> 
+  {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data)
+    {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+ */
+
+public class Solution 
+{
+  	public static boolean isBST(BinaryTreeNode<Integer> root) 
+    {
+    if(root==null)
+    {
+    	return true;
+    }
+    int left=maximum(root.left);
+    int right=minimum(root.right);
+    
+    if(root.data<=left)
+    {
+    	return false;
+    }
+    
+    if(root.data>right)
+    {
+    	return false;
+    }
+    
+    boolean leftans=isBST(root.left);
+    boolean rightans=isBST(root.right);
+    
+    if(leftans&&rightans)
+    {
+    	return true;
+    }
+    else
+    {
+    	return false;
+    }
+	}
+  
+	public static int minimum(BinaryTreeNode<Integer> root) 
+	{
+		if(root==null)
+		{
+			return Integer.MAX_VALUE;
+		}
+		return Math.min(root.data, Math.max(minimum(root.left), minimum(root.right)));
+	}
+  
+	public static int maximum(BinaryTreeNode<Integer> root) 
+	{
+		if(root==null)
+		{
+			return Integer.MIN_VALUE;
+		}	
+		return Math.max(root.data, Math.max(maximum(root.left), maximum(root.right)));
+	}	
+	}
+
