@@ -1,0 +1,79 @@
+/*
+    class Node 
+    {
+        int data;
+        Node next;
+
+        public Node(int data)
+        {
+            this.data = data;
+            this.next = null;
+        }
+    }
+*/
+
+public class Stack 
+{
+  private Node top;
+	private int size;
+	
+    public class Node
+    {
+    	private int data;
+    	private Node next;
+    	
+    	public Node(int data)
+    	{
+    		this.data=data;
+    		this.next=null;
+    	}
+    }
+
+
+
+    /*----------------- Public Functions of Stack -----------------*/
+
+
+    public int getSize() 
+    { 
+      return size;
+    }
+
+    public boolean isEmpty() 
+    {
+        if(size==0)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public void push(int element) 
+    {
+      Node newnode=new Node(element);
+    	newnode.next=top;
+    	top=newnode;
+    	size++;
+    }
+
+    public int pop() 
+    {
+      if(isEmpty())
+    	{	
+    		return -1;
+    	}
+    	int result=top.data;
+    	top=top.next;
+    	size--;
+    	return result;
+    }
+
+    public int top() 
+    {
+      if(isEmpty())
+    	{
+    		return -1;
+    	}
+    	return top.data;
+    }
+}
