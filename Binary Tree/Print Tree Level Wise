@@ -1,0 +1,65 @@
+/*
+	class BinaryTreeNode<T> 
+  {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) 
+    {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+*/
+
+public class Solution 
+{
+	public static void printLevelWise(BinaryTreeNode<Integer> root)
+  {
+		 if (root == null) 
+     {
+			return;
+		 }
+     
+     QueueUsingLL<BinaryTreeNode<Integer>> q = new QueueUsingLL<BinaryTreeNode<Integer>>();
+     q.enqueue(root);  
+     
+     while(q.size()!=0)
+     {
+     BinaryTreeNode<Integer> temp=null; 
+     try 
+     { 
+        temp = q.dequeue(); 
+     }
+     catch (QueueEmptyException e)
+     {
+            
+     }
+     
+		 String toBePrinted = temp.data + ":"+"";
+     
+		 if (temp.left != null) 
+     {
+		 toBePrinted += "L:" + temp.left.data + ",";
+     q.enqueue(temp.left); 
+		 }
+		 else
+     {
+       toBePrinted += "L:" + "-1" + ",";
+     }
+     
+		 if (temp.right != null) 
+     {
+		 toBePrinted += "R:" + temp.right.data;
+     q.enqueue(temp.right);
+     }
+     else
+     {
+     toBePrinted += "R:" + "-1" ; 
+     }
+     System.out.println(toBePrinted);  
+     }
+}
+}
