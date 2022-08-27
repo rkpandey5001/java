@@ -1,0 +1,58 @@
+class pair
+{
+    int sum = Integer.MIN_VALUE;
+    TreeNode<Integer> max = null;
+}
+public class Solution 
+{
+	
+	public static TreeNode<Integer> maxSumNode(TreeNode<Integer> root)
+  {
+        if(root==null)
+        {
+        return null;
+        }
+        return max(root).max;
+	}
+    public static pair max(TreeNode<Integer> root)
+    {
+        if(root==null)
+        {
+            pair p = new pair();
+            p.sum = Integer.MIN_VALUE;
+            p.max = null;
+            return p;
+        }
+        
+        int sum = root.data;
+        TreeNode<Integer> max = root;
+        
+        for(TreeNode<Integer> child:root.children)
+        {
+            sum += child.data;
+        }
+        
+       	pair p = new pair();
+        
+        for(TreeNode<Integer> child:root.children)
+        {
+            if(sum>p.sum)
+            {
+                p.sum=sum;
+                p.max = max;
+            }
+            else
+            {
+                sum=p.sum;
+                max = p.max;
+            }
+            p = max(child);
+        }
+        if(sum>p.sum)
+        {
+                p.sum=sum;
+                p.max = max;
+        }  
+        return p;
+    }
+}
