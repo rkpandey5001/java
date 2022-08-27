@@ -1,0 +1,66 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> 
+  {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) 
+    {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+public class Solution 
+{
+	public static boolean isNodePresent(BinaryTreeNode<Integer> root, int x)
+  {
+	  if(root==null)
+      {
+            return false;
+      }
+     if(root.data==x)
+     {
+     return true;
+     }
+     
+     boolean right=false;
+     boolean left=false;
+     
+     if(root.left!=null)
+     {
+         if(root.left.data==x)
+         {
+             return true;
+         }
+         left=isNodePresent(root.left,x);
+     }
+     
+     if(root.right!=null)
+     {
+         if(root.right.data==x)
+         {
+             return true;
+         }
+         right=isNodePresent(root.right,x);
+     }
+     
+     if(right==true)
+     {
+         return true;
+     }
+     
+     if(left==true)
+     {
+         return true;
+     }
+     return false;
+ }
+}
