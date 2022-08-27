@@ -1,0 +1,79 @@
+/*
+	class Node 
+  {
+		int data;
+		Node next;
+
+		public Node(int data) 
+    {
+			this.data = data;
+			this.next = null;
+		}
+	}
+*/
+
+public class Queue 
+{
+	private Node front;
+	private Node rear;
+	private int size;
+	
+	public Queue() 
+  {
+		front=null;
+		rear=null;
+		size=0;
+	}
+
+	public int getSize()
+  { 
+	return size;
+  }
+
+  public boolean isEmpty() 
+  { 
+    return size==0;
+  }
+
+  public void enqueue(int data) 
+  {
+     Node node=new Node(data);
+    if(rear==null)
+    {
+    	 front=node;
+    	 rear=node;
+    }
+    else
+    {
+    	 rear.next=node;
+    	 rear=node;
+    }
+     size++;
+    }
+    
+    public int dequeue()
+    {
+      if(size==0)
+    	{
+            return -1;
+      }
+    	int temp=front.data;
+    	front=front.next;
+      
+      if(size==1)
+      {
+        rear=null;
+      }
+      size--;
+    	return temp;
+    }
+    
+    public int front()
+    {   
+        if(size==0)
+        {
+            return -1;
+        }
+    	return front.data;
+    }
+}
