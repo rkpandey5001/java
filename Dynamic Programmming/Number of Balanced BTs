@@ -1,0 +1,45 @@
+/*
+    Time complexity: O(2^N)
+    Space complexity: O(N)
+
+    where N is the final height of the binary tree
+*/
+
+public class Solution 
+{
+	public static long balancedBTs(long n)
+  {
+        int m=(int)n;
+        int storage[]=new int[m+1];
+        
+        for(int i=0;i<storage.length;i++)
+        {
+            storage[i]=-1;
+        }
+        int mod=(int)Math.pow(10,9)+7;
+        return balancedBTs(storage,m,mod);
+    }
+    
+    private static int balancedBTs(int storage[],int height,int mod)
+    {
+        if(height==0 || height==1)
+        {
+            storage[height]=1;
+            return 1;
+        }
+        
+        if(storage[height]!=-1)
+        {
+        return storage[height];
+        }
+        
+        int x=balancedBTs(storage,height-1,mod);
+        int y=balancedBTs(storage,height-2,mod);
+        long value1=(long)x*x;
+        long value2=(long)y*x*2;
+        int res1=(int)(value1%mod);
+        int res2=(int)(value2%mod);
+        storage[height]=(res1+res2)%mod;
+        return storage[height];  
+	}
+}
