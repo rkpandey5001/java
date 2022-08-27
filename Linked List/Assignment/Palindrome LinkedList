@@ -1,0 +1,53 @@
+/*********************************************************************
+
+	Following is the Node class already written for the Linked List
+
+	class LinkedListNode<T>
+  {
+    	T data;
+    	LinkedListNode<T> next;
+    
+    	public LinkedListNode(T data) 
+      {
+        	this.data = data;
+    	}
+	}
+
+***********************************************************************/
+
+public class Solution 
+{
+	public static boolean isPalindrome(LinkedListNode<Integer> head)
+  {
+		LinkedListNode<Integer> temp1=head;
+		LinkedListNode<Integer> temp2=head;
+		while(temp2!=null&&temp2.next!=null)
+		{
+			temp1=temp1.next;
+			temp2=temp2.next.next;
+		}
+		LinkedListNode<Integer> prev=null,next=null;
+		LinkedListNode<Integer> current=temp1;
+		while(current!=null)
+		{
+			next=current.next;
+			current.next=prev;
+			prev=current;
+			current=next;
+		}
+		temp2=head;
+		while(prev!=null)
+		{
+			if(temp2.data!=prev.data)
+			{
+				return false;
+			}
+			else
+			{
+				temp2=temp2.next;
+				prev=prev.next;
+			}
+		}
+		return true;
+	}
+}
