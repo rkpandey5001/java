@@ -1,0 +1,66 @@
+/*
+	
+	Following is the structure used to represent the Binary Tree Node
+
+	class BinaryTreeNode<T> {
+		T data;
+		BinaryTreeNode<T> left;
+		BinaryTreeNode<T> right;
+
+		public BinaryTreeNode(T data) {
+			this.data = data;
+			this.left = null;
+			this.right = null;
+		}
+	}
+
+*/
+
+public class Solution 
+{  
+    public static BinaryTreeNode<Integer> buildTreeHelper(int[] postOrder, int[] inOrder, int siPos, int eiPos, int siIn, int eiIn)
+    {
+        if(siPos > eiPos || siIn > eiIn)
+        {
+            return null;
+        }
+        
+        int rootData = postOrder[eiPos];
+        int rootIndex = -1;
+        for(int i = 0; i < inOrder.length; i++)
+        {
+            if(inOrder[i] == rootData)
+            {
+                rootIndex = i;
+                break;
+            }
+        }
+        
+        int siInLeft = siIn;
+        int eiInLeft = rootIndex - 1;
+        int siInRight = rootIndex + 1;
+        int eiInRight = eiIn;
+        int siPosLeft = siPos;
+        
+        int eiPosRight = eiPos - 1;
+        
+        int eiPosLeft = siPos + rootIndex - siIn - 1;
+        int siPosRight = eiPosLeft + 1;
+        
+        BinaryTreeNode<Integer> leftNode = buildTreeHelper(postOrder, inOrder, siPosLeft, eiPosLeft, siInLeft, eiInLeft);
+        BinaryTreeNode<Integer> rightNode = buildTreeHelper(postOrder, inOrder, siPosRight, eiPosRight, siInRight, eiInRight);
+        
+        BinaryTreeNode<Integer> root = new BinaryTreeNode<Integer>(rootData);
+        
+        root.left = leftNode;
+        root.right = rightNode;
+        
+        return root;
+    }
+
+	public static BinaryTreeNode<Integer> buildTree(int[] postOrder, int[] inOrder) 
+  {
+        BinaryTreeNode<Integer> root = buildTreeHelper(postOrder, inOrder, 0, postOrder.length - 1, 0, inOrder.length - 1);
+        return root;
+	}
+}
