@@ -1,0 +1,50 @@
+/*
+    class LinkedListNode<T>
+    {
+        T data;
+        LinkedListNode<T> next;
+    
+        public LinkedListNode(T data)
+        {
+            this.data = data;
+        }
+    }
+*/
+
+public class Solution 
+{
+	public static LinkedListNode<Integer> kReverse(LinkedListNode<Integer> head, int k) 
+  {
+		LinkedListNode<Integer>current=head,next=null,prev=null;
+    
+		if(head==null)
+		{
+			return head;
+		}
+        if(head.next==null)
+		{
+			return head;
+		}
+        if(k==0)
+		{
+			return head;
+		}
+    
+		int count=0;
+    
+		while(count<k&&current!=null)
+		{
+		next=current.next;
+		current.next=prev;
+		prev=current;
+		current=next;
+		count++;
+		}
+    
+		if(next!=null)
+		{
+		head.next=kReverse(next,k);
+		}
+		return prev;
+  }
+}
