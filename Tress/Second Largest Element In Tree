@@ -1,0 +1,62 @@
+public class Solution 
+{
+
+/*	TreeNode structure 
+ * 
+ * class TreeNode<T> 
+ {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data)
+    {
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	}*/
+  
+  static int ceil;
+  static int floor;
+	public static TreeNode<Integer> findSecondLargest(TreeNode<Integer> root)
+  {
+     return kthLargest(root,2);
+	}
+    
+    public static TreeNode<Integer> kthLargest(TreeNode <Integer>node, int k) 
+    {
+        floor = Integer.MIN_VALUE;
+        int factor = Integer.MAX_VALUE;
+        for (int i = 0; i < k; i++) 
+        {
+            ceilAndFloor(node, factor);
+            factor = floor;
+            floor = Integer.MIN_VALUE;
+        }
+        TreeNode <Integer>p= new TreeNode<>(factor);
+        return p;
+    }
+      
+    public static void ceilAndFloor(TreeNode<Integer> node,int data)
+    {
+        if(node.data>data)
+        {
+            if(node.data<ceil)
+            {
+                ceil=node.data;
+            }
+        }
+        
+        if(node.data<data)
+        {
+            if(node.data>floor)
+            {
+                floor=node.data;
+            }
+        }
+        
+        for(TreeNode child:node.children)
+        {
+            ceilAndFloor(child,data);
+        }    
+    }
+}
