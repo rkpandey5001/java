@@ -1,0 +1,26 @@
+public class Solution 
+{
+	public static void FindPermutations(String str) 
+  {
+    String answer="";
+    FindPermutations(str , answer);
+   }
+   
+  static void  FindPermutations(String s , String answer)
+  {   
+    if (s.length() == 0)
+    {
+        System.out.println(answer + "  ");
+        return;
+    }
+      
+    for(int i = 0 ;i < s.length(); i++)
+    {
+        char ch = s.charAt(i);
+        String left_substr = s.substring(0, i);
+        String right_substr = s.substring(i + 1);
+        String rest = left_substr + right_substr;
+        FindPermutations(rest, answer + ch);
+    }
+}	
+}
