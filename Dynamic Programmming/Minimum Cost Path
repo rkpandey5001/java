@@ -1,0 +1,28 @@
+public class Solution 
+{
+	public static int minCostPath(int[][] input) 
+  {
+	return minCostPath(input,0,0);
+	}
+	
+	private static int minCostPath(int[][] input,int i,int j) 
+	{
+	int row=input.length;
+	int column=input[0].length;
+	if(i==row-1&&j==column-1)
+	{
+		return input[i][j];
+	}
+	
+	if(i>=row||j>=column)
+	{
+		return Integer.MAX_VALUE;
+	}
+	
+	int opt1=minCostPath(input,i,j+1);
+	int opt2=minCostPath(input,i+1,j+1);
+	int opt3=minCostPath(input,i+1,j);
+	
+	return input[i][j]+Math.min(opt1,Math.min(opt2, opt3));
+	}
+}
