@@ -1,0 +1,64 @@
+public class Solution {
+	/*
+	 * BinaryTreeNode class
+	 * 
+	 * class BinaryTreeNode<T> 
+	 * { 
+	 * 		T data; 
+	 * 		BinaryTreeNode<T> left; 
+	 * 		BinaryTreeNode<T> right;
+	 *		public BinaryTreeNode(T data) 
+	 *		{
+	 *  		this.data = data; 
+	 *  	} 
+	 *  }
+	 */
+	public static class BSTPair 
+  {
+    int min;
+    int max;
+    boolean isBST;
+    int height;
+  }
+    
+	public static int largestBSTSubtree(BinaryTreeNode<Integer> root) 
+  {
+	 return isBST(root).height;
+	}
+  
+	public static BSTPair isBST(BinaryTreeNode<Integer> root)
+	{
+		if(root==null)
+		{
+			BSTPair ans=new BSTPair();
+			ans.min=Integer.MAX_VALUE;
+			ans.max=Integer.MIN_VALUE;
+			ans.isBST=true;
+			ans.height=0;
+			return ans;
+		}
+		BSTPair left=isBST(root.left);
+		BSTPair right=isBST(root.right);
+        
+		BSTPair ans1=new BSTPair();
+		if(!left.isBST || !right.isBST ||  root.data >right.min ||  root.data <left.max)
+	  {
+	  if(left.height>right.height)
+		{
+		left.isBST=false;
+		return left;            
+		}
+	  else
+	  {
+		right.isBST=false;
+		return right;
+		}
+		}
+        
+		ans1.isBST=left.isBST&&right.isBST&&(root.data>=left.max&&root.data<right.min);
+		ans1.min=Math.min(root.data, Math.min(left.min,right.min));
+		ans1.max=Math.max(root.data, Math.max(left.max,right.max));
+		ans1.height=1+ Math.max(left.height,right.height);
+		return ans1;
+	}
+}
