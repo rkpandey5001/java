@@ -1,0 +1,51 @@
+/*	TreeNode structure 
+ * 
+ * class TreeNode<T>
+   {
+		T data;
+		ArrayList<TreeNode<T>> children;
+
+		TreeNode(T data)
+    {
+			this.data = data;
+			children = new ArrayList<TreeNode<T>>();
+		}
+	 }
+ */
+
+import java.util.*;
+public class Solution 
+{
+	public static void printLevelWise(TreeNode<Integer> root)
+    {
+	    if(root==null)
+      {
+        return;
+      }
+      
+      Queue<TreeNode<Integer>> q = new LinkedList<>();
+      q.add(root);
+      
+      while(true)
+      {
+        	int size = q.size();
+          if(size == 0)
+          {
+              break;
+          }
+          while(size!=0)
+          {
+                TreeNode<Integer> front = q.poll();
+                System.out.print(front.data+" ");
+                for(TreeNode<Integer> ele : front.children)
+                {
+                    q.add(ele);
+                }
+                size--;
+            }
+            System.out.println();
+        }
+    }
+}
+		
+
