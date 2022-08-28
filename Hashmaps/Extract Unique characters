@@ -1,0 +1,28 @@
+import java.util.HashMap;
+
+public class Solution 
+{
+	public static String uniqueChar(String str)
+  {
+     HashMap<Character,Boolean> a=new HashMap<>();
+     if(str.length()==0)
+     {
+     return null;
+     }
+     
+     String ans="";
+     for(int i=0;i<str.length();i++)
+     {
+     if(a.containsKey(str.charAt(i)))
+     {
+     continue;
+      }
+    	else
+    	{
+    	ans=ans+str.charAt(i); 
+    	a.put(str.charAt(i), true);
+    	}
+      }
+      return ans;
+	  }
+}
