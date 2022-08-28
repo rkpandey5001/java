@@ -1,0 +1,31 @@
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+import java.util.ArrayList;
+import java.util.*;
+public class Solution
+{
+	  public static ArrayList<Integer> kSmallest(int n, int[] input, int k)
+    {
+    ArrayList<Integer> output=new ArrayList<>();
+    PriorityQueue<Integer> pq= new PriorityQueue<>(Collections.reverseOrder());
+    int i=0;
+    for( ;i<k;i++)
+    {
+    pq.add(input[i]);
+    }
+    for( ; i<input.length; i++)
+    {
+        int min=pq.peek();
+        if(input[i]<min)
+        {
+        pq.remove();
+        pq.add(input[i]);
+        }
+    }
+    while(!pq.isEmpty())
+    {
+    output.add(pq.poll());
+    }
+    return output;
+}
+}
