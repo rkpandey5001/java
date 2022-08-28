@@ -1,0 +1,26 @@
+import java.util.PriorityQueue;
+public class Solution 
+{
+	public static int kthLargest(int n, int[] input, int k) 
+  {
+    int ans=0;
+    PriorityQueue<Integer> pq=new PriorityQueue<>();
+    int i=0;
+    for(  ; i<k ; i++)
+    {
+    pq.add(input[i]);
+    }
+    
+    for( ; i<n ;i++)
+    {
+    	int element=pq.peek();
+    	if(element<input[i])
+    	{
+    	pq.remove();
+    	pq.add(input[i]);
+    	}
+    }
+    ans=pq.remove();
+    return ans;
+	}
+}
