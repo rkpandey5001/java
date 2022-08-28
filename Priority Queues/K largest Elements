@@ -1,0 +1,29 @@
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+public class Solution
+{
+	public static ArrayList<Integer> kLargest(int input[], int k)
+  {	
+	    ArrayList<Integer> output = new ArrayList<Integer>();
+    	PriorityQueue<Integer> pq=new PriorityQueue<>();
+    	int i=0;
+    	for( ; i<k ; i++)
+    	{
+    	pq.add(input[i]);
+    	}
+    	
+    	for( ; i<input.length; i++)
+    	{
+    	input[i-k]=pq.remove();
+    	pq.add(input[i]);
+   		output.add(input[i]);
+    	}
+    	
+    	for(int j=input.length-k; j<input.length; j++)
+    	{
+    	input[j]=pq.remove();
+    	output.add(input[i-k]);
+    	}
+    	return output;	
+	}
+}
