@@ -1,0 +1,42 @@
+import java.util.Scanner;
+public class Main 
+{
+
+        public static void main(String[] args) 
+        {
+        Scanner b=new Scanner(System.in);
+        int salary=b.nextInt();
+        char grade=b.next().charAt(0);
+
+        int allow,total,totalsalary,x;
+        double ts,hra,da,pf,d;
+        if(grade=='A')
+        {
+            allow=1700;
+        }
+        else if(grade=='B')
+        {
+            allow=1500;
+        }
+        else
+        {
+            allow=1300;
+        }
+        hra=0.20*salary;
+        da=0.50*salary;
+        pf=0.11*salary;
+        ts=(salary+hra+da+allow)-pf;
+        x=(int)ts;
+        if(ts-x>=0.5)
+        {
+            totalsalary=x+1;
+            System.out.println(totalsalary);
+        }
+        else
+        {
+            totalsalary=x;
+            System.out.println(totalsalary);
+        }
+    }
+}
+
