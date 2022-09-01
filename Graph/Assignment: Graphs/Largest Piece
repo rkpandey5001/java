@@ -1,0 +1,47 @@
+public class Solution 
+{
+ static int[][] dir = { { 1, 0 }, { -1, 0 }, { 0, 1 }, { 0, -1 } };
+
+	public static int dfs(String[] edge, int n)
+  {
+        int result=0;
+        boolean visited[][]=new boolean[n][n];
+        
+        for(int i=0;i<n;i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                if(edge[i].charAt(j)=='1' && !visited[i][j])
+                {
+                    int count=dfs(edge,n,i,j,visited);
+                    result=Math.max(result,count);
+                }
+            }
+        }
+        return result;
+	}
+
+
+    public static int dfs(String[] edge,int n,int i,int j,boolean visited[][])
+    {
+        if(i<0 || i>=n || j<0 || j>=n)
+        {
+            return 0;
+        }
+        if(edge[i].charAt(j)!='1')
+        {
+            return 0;
+        }
+        if(visited[i][j]==true)
+        {
+            return 0;
+        }
+        visited[i][j]=true;
+        int count=0;
+        count+=dfs(edge,n,i+1,j,visited);
+        count+=dfs(edge,n,i,j-1,visited);
+        count+=dfs(edge,n,i-1,j,visited);
+        count+=dfs(edge,n,i,j+1,visited);
+        return count+1;
+    }
+}
